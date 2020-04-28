@@ -28,17 +28,14 @@
 #  Netmask reply:                   0
 #  Unknown type:                    0
 Value INTERFACE (\S+)
-Value INTERFACE_STATE (UP|DOWN|ADM|Stby)
+Value INTERFACE_STATE (\S+)
 Value INTERFACE_PROTOCOL_STATE (UP|DOWN|UP\(s\)|DOWN\(s\))
 Value IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
 Value PREFIX_LENGTH (\d{1,2})
 
 Start
-  #^${INTERFACE}\scurrent\sstate:\s${INTERFACE_STATE}
+  ^${INTERFACE} current state: ${INTERFACE_STATE}
   ^Line protocol current state: ${INTERFACE_PROTOCOL_STATE}
-
-Interface_rec
-  ^Line protocol current state: ${INTERFACE_PROTOCOL_STATE}
-  ^Internet Address is ${IP_ADDRESS}/${PREFIX_LENGTH}
+  ^Internet Address is ${IP_ADDRESS}/${PREFIX_LENGTH} -> Record
 
 EOF
