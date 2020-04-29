@@ -16,8 +16,8 @@
 
 import unittest
 
-from napalm_skeleton import skeleton
-from napalm_base.test.base import TestConfigNetworkDriver, TestGettersNetworkDriver
+from napalm_hp_comware import hp_comware
+from napalm.base.test.base import TestConfigNetworkDriver, TestGettersNetworkDriver
 import json
 
 
@@ -30,10 +30,10 @@ class TestConfigDriver(unittest.TestCase, TestConfigNetworkDriver):
         hostname = '127.0.0.1'
         username = 'vagrant'
         password = 'vagrant'
-        cls.vendor = 'skeleton'
+        cls.vendor = 'hp_comware'
 
         optional_args = {'port': 12443, }
-        cls.device = skeleton.SkeletonDriver(hostname, username, password, timeout=60,
+        cls.device = hp_comware.HpComwareDriver(hostname, username, password, timeout=60,
                                              optional_args=optional_args)
         cls.device.open()
 
@@ -52,10 +52,10 @@ class TestGetterDriver(unittest.TestCase, TestGettersNetworkDriver):
         hostname = '127.0.0.1'
         username = 'vagrant'
         password = 'vagrant'
-        cls.vendor = 'skeleton'
+        cls.vendor = 'hp_comware'
 
         optional_args = {'port': 12443, }
-        cls.device = skeleton.SkeletonDriver(hostname, username, password, timeout=60,
+        cls.device = hp_comware.HpComwareDriver(hostname, username, password, timeout=60,
                                              optional_args=optional_args)
 
         if cls.mock:

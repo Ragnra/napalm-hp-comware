@@ -10,6 +10,7 @@ import sys
 import re
 import logging
 from json import dumps
+import socket
 
 from napalm.base.utils import py23_compat
 from napalm.base.base import NetworkDriver
@@ -19,6 +20,7 @@ from napalm.base.exceptions import (
     MergeConfigException,
     ReplaceConfigException,
     CommandErrorException,
+    ConnectionClosedException
     )
 from napalm.base.helpers import (
     textfsm_extractor,
@@ -311,7 +313,7 @@ class HpComwareDriver(NetworkDriver):
              'description': 'la-la-la-sw01',
              'speed': '20G(a)',                 # (\d+|--|\d+G\(a\)|A|auto)
              'duplex': 'F(a)',                  # (A|F|F\(a\))
-             'interface_mode': 'T',             # (A|T|H)\
+             'interface_mode': 'T',             # (A|T|H)
              'pvid': '1'
              },
         """
@@ -478,24 +480,24 @@ class HpComwareDriver(NetworkDriver):
 
     def normalize_port_name(self,res_port):
         """ Convert Short HP interface names to long (ex: BAGG519 --> Bridge-Aggregation 519)"""
-        if re.match('^BAGG\d+',res_port):
+        if re.match(r'^BAGG\d+',res_port):
             # format port BAGG519 --> Bridge-Aggregation 519
             agg_port_name = res_port.replace('BAGG','Bridge-Aggregation ')
             return agg_port_name
-        elif re.match('^Bridge-Aggregation\d*',res_port):
+        elif re.match(r'^Bridge-Aggregation\d*',res_port):
             agg_port_name = res_port
             return agg_port_name
-        elif re.match('^XGE\d.*',res_port):
+        elif re.match(r'^XGE\d.*',res_port):
             # format port XGE1/2/0/7 --> Ten-GigabitEthernet 1/2/0/7
             port_name = res_port.replace('XGE','Ten-GigabitEthernet ')
             # print(" --- Port Name: "+'\x1b[1;32;40m' +"{}" .format(port_name)+'\x1b[0m')
             return port_name
-        elif re.match('^GE\d.*',res_port):
+        elif re.match(r'^GE\d.*',res_port):
             # format port GE1/5/0/19 --> GigabitEthernet 1/5/0/19
             port_name = res_port.replace('GE','GigabitEthernet ')
             # print(" --- Port Name: "+'\x1b[1;32;40m' +"{}" .format(port_name)+'\x1b[0m')
             return port_name
-        elif re.match('^Vlan\d+',res_port):
+        elif re.match(r'^Vlan\d+',res_port):
             # format port Vlan4003 --> Vlan-interface4003
             port_name = res_port.replace('Vlan','Vlan-interface')
             # print(" --- Port Name: "+'\x1b[1;32;40m' +"{}" .format(port_name)+'\x1b[0m')
@@ -557,21 +559,24 @@ class HpComwareDriver(NetworkDriver):
         # Disable Pageing of the device
         self.disable_pageing()
        
-        out_curr_config = self._send_command('display current-configuration')
-        ipv4table = re.findall(r'^interface\s+([A-Za-z0-9-/]{1,40})\n.*\s+ip\s+address\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\n',out_curr_config,re.M)
-        # TODO: get device with v6 and update above struct
-        # ipv6table = re.findall(r'',out_curr_config,re.M)
-        output_ipv4table = []
-        iface = {}
-        iface['ipv4'] = {}
-        iface['ipv6'] = {}
-        for rec in ipv4table:
-            interface,ip,mask = rec
-            norm_int = self.normalize_port_name(interface)
-            iinterfaces = { norm_int : {'ipv4': {ip: { 'prefix_len': mask}}}}
-            output_ipv4table.append(iinterfaces)
+        # out_curr_config = self._send_command('display current-configuration')
+        # ipv4table = re.findall(r'^interface\s+([A-Za-z0-9-/]{1,40})\n.*\s+ip\s+address\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\n',out_curr_config,re.M)
+        # # TODO: get device with v6 and update above struct
+        # # ipv6table = re.findall(r'',out_curr_config,re.M)
+        # output_ipv4table = []
+        # iface = {}
+        # iface['ipv4'] = {}
+        # iface['ipv6'] = {}
+        # for rec in ipv4table:
+        #     interface,ip,mask = rec
+        #     norm_int = self.normalize_port_name(interface)
+        #     iinterfaces = { norm_int : {'ipv4': {ip: { 'prefix_len': mask}}}}
+        #     output_ipv4table.append(iinterfaces)
 
-        return output_ipv4table     
+        # return output_ipv4table
+        """ Return textFSM table with physical ports joined as "aggregation_port" """
+        raw_out = self._send_command('display ip interface')
+        port_entries = textfsm_extractor(self, "display_ip_interface", raw_out)
 
 
     def get_lldp_neighbors(self):

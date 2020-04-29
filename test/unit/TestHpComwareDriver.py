@@ -16,11 +16,11 @@
 
 import unittest
 
-from napalm_skeleton import skeleton
-from napalm_base.test.base import TestConfigNetworkDriver
+from napalm_hp_comware import hp_comware
+from napalm.base.test.base import TestConfigNetworkDriver
 
 
-class TestConfigSkeletonDriver(unittest.TestCase, TestConfigNetworkDriver):
+class TestConfigHpComwareDriver(unittest.TestCase, TestConfigNetworkDriver):
     """Group of tests that test Configuration related methods."""
 
     @classmethod
@@ -29,10 +29,10 @@ class TestConfigSkeletonDriver(unittest.TestCase, TestConfigNetworkDriver):
         hostname = '127.0.0.1'
         username = 'vagrant'
         password = 'vagrant'
-        cls.vendor = 'skeleton'
+        cls.vendor = 'hp_comware'
 
         optional_args = {'port': 12443, }
-        cls.device = skeleton.SkeletonDriver(hostname, username, password, timeout=60,
+        cls.device = hp_comware.HpComwareDriver(hostname, username, password, timeout=60,
                                              optional_args=optional_args)
         cls.device.open()
 

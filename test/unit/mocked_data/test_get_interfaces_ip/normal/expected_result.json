@@ -1,0 +1,23 @@
+{
+    "LoopBack1": {
+		"ipv4": {
+			"10.100.99.2": {
+				"prefix_length": 32
+			}
+        }
+    },
+    "Route-Aggregation203": {
+		"ipv4": {
+			"10.100.102.2": {
+				"prefix_length": 24
+			}
+        }
+    },
+    "Ten-GigabitEthernet1/0/10": {
+		"ipv4": {
+			"10.100.8.1": {
+				"prefix_length": 24
+			}
+        }
+    }
+}

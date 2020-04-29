@@ -1,0 +1,13 @@
+The brief information of interface(s) under route mode:
+Link: ADM - administratively down; Stby - standby
+Protocol: (s) - spoofing
+Interface            Link Protocol Main IP         Description
+M-GE0/0/0            DOWN DOWN     --
+NULL0                UP   UP(s)    --
+Vlan1                UP   UP       10.107.4.1      Ma
+Vlan3                UP   UP       10.108.3.254    WL
+Vlan6                UP   UP       10.107.4.177    T-
+Vlan10               UP   UP       10.107.11.254   Us
+Vlan11               UP   UP       10.108.11.254   CS
+Vlan12               UP   UP       10.107.12.254   Us
+Vlan38               UP   UP       10.107.38.254   Po
