@@ -71,3 +71,6 @@ class FakeHPComwareDevice(BaseTestDouble):
 
     def disconnect(self):
         pass
+
+    def disable_paging(self):
+        pass

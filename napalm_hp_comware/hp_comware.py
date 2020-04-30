@@ -557,7 +557,8 @@ class HpComwareDriver(NetworkDriver):
             }
         """
         # Disable Pageing of the device
-        self.disable_pageing()
+        #self.disable_pageing()
+        self.device.disable_paging()
        
         # out_curr_config = self._send_command('display current-configuration')
         # ipv4table = re.findall(r'^interface\s+([A-Za-z0-9-/]{1,40})\n.*\s+ip\s+address\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\n',out_curr_config,re.M)
@@ -576,7 +577,36 @@ class HpComwareDriver(NetworkDriver):
         # return output_ipv4table
         """ Return textFSM table with physical ports joined as "aggregation_port" """
         raw_out = self._send_command('display ip interface')
-        port_entries = textfsm_extractor(self, "display_ip_interface", raw_out)
+        ifaces_ip_entries = textfsm_extractor(self, "display_ip_interface", raw_out)
+        
+        intf_table = {}
+
+        for row in ifaces_ip_entries:
+            intf_name = self.normalize_port_name(row.get('interface', None))
+            ipaddr = row.get('ip_address',None)
+            try:
+                prefix = int(row.get('prefix_length', None))
+            except ValueError:
+                prefix = None
+
+            if intf_name:
+                if not intf_table.get(intf_name):
+                    intf_table[intf_name] = {}
+
+                if not intf_table[intf_name].get('ipv4',None):
+                    intf_table[intf_name]['ipv4'] = {}
+
+                if not intf_table[intf_name]['ipv4'].get(ipaddr,None):
+                    intf_table[intf_name]['ipv4'][ipaddr] = {'prefix_length': prefix }
+
+        raw_out = self._send_command('display ipv6 interface')
+        ifaces_ipv6_entries = textfsm_extractor(self, "display_ipv6_interface", raw_out)
+
+        print(ifaces_ipv6_entries)
+
+        return intf_table
+
+                    
 
 
     def get_lldp_neighbors(self):
