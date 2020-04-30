@@ -1,4 +1,4 @@
-Ten-GigabitEthernet1/0/10 current state :UP
+GigabitEthernet1/0/22 current state :UP
 Line protocol current state :UP
 IPv6 is enabled, link-local address is FE80::BAAF:67FF:FE22:C47E
   Global unicast address(es):
@@ -21,8 +21,9 @@ IPv6 Packet statistics:
   InTruncatedPkts:              0
   InHopLimitExceeds:            0
   InBadHeaders:                 0
-GigabitEthernet1/0/23 current state :UP
-Line protocol current state :DOWN
+
+Ten-GigabitEthernet1/0/10 current state :UP
+Line protocol current state :UP
 IPv6 is enabled, link-local address is FE80::BAAF:67FF:FE22:C47E
   Global unicast address(es):
     2A02:D200::6:A, subnet is 2A02:D200::6:0/112

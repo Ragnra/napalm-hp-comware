@@ -1,23 +1,54 @@
 {
-    "LoopBack1": {
+	"LoopBack1": {
 		"ipv4": {
 			"10.100.99.2": {
 				"prefix_length": 32
+			},
+			"10.3.3.2": {
+				"prefix_length": 24
 			}
-        }
-    },
-    "Route-Aggregation203": {
+		}
+	},
+	"Route-Aggregation203": {
 		"ipv4": {
 			"10.100.102.2": {
 				"prefix_length": 24
 			}
-        }
-    },
-    "Ten-GigabitEthernet1/0/10": {
+		}
+	},
+	"Ten-GigabitEthernet1/0/10": {
 		"ipv4": {
 			"10.100.8.1": {
 				"prefix_length": 24
 			}
-        }
-    }
+		},
+		"ipv6": {
+			"FE80::BAAF:67FF:FE22:C47E": {
+				"prefix_length": 64
+			},
+			"2A02:D200::5:A": {
+				"prefix_length": 112
+			}
+		}
+	},
+	"GigabitEthernet1/0/23": {
+		"ipv6": {
+			"FE80::BAAF:67FF:FE22:C47E": {
+				"prefix_length": 64
+			},
+			"2A02:D200::6:A": {
+				"prefix_length": 112
+			}
+		}
+	},
+	"GigabitEthernet1/0/24": {
+		"ipv6": {
+			"FE80::BAAF:67FF:FE22:C47E": {
+				"prefix_length": 64
+			},
+			"2A02:D200::7:A": {
+				"prefix_length": 112
+			}
+		}
+	}
 }

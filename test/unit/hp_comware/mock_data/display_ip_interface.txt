@@ -1,7 +1,6 @@
 LoopBack1 current state: UP
 Line protocol current state: UP(spoofing)
 Internet Address is 10.100.99.2/32 Primary
-Internet Address is 10.3.3.2/24 Secondary
 Broadcast address: 10.100.99.2
 The Maximum Transmit Unit: 1536 bytes
 input packets : 0, bytes : 0, multicasts : 0
@@ -31,6 +30,7 @@ Line protocol current state: DOWN
 Route-Aggregation203 current state: UP
 Line protocol current state: UP
 Internet Address is 10.100.102.2/24 Primary
+Internet Address is 10.3.3.2/24 Secondary
 Broadcast address: 10.100.102.255
 The Maximum Transmit Unit: 1500 bytes
 input packets : 3383870, bytes : 280116009, multicasts : 3383649
