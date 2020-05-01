@@ -1,0 +1,44 @@
+HP Comware Software, Version 7.1.045, Release 2418P06
+Copyright (c) 2010-2015 Hewlett-Packard Development Company, L.P.
+HP FF 5930-32QSFP+ Switch uptime is 223 weeks, 6 days, 9 hours, 7 minutes
+Last reboot reason : USER reboot
+
+Boot image: flash:/5930-cmw710-boot-r2418p06.bin
+Boot image version: 7.1.045, Release 2418P06
+  Compiled Aug 07 2015 15:40:53
+System image: flash:/5930-cmw710-system-r2418p06.bin
+System image version: 7.1.045, Release 2418P06
+  Compiled Aug 07 2015 15:40:53
+
+
+Slot 1:
+Uptime is 98 weeks,6 days,7 hours,27 minutes
+FF 5930-32QSFP+ Switch with 2 Processors
+BOARD TYPE:         FF 5930-32QSFP+ Switch
+DRAM:               4096M bytes
+FLASH:              1024M bytes
+PCB 1 Version:      VER.A
+PCB 2 Version:      VER.A
+Bootrom Version:    214
+CPLD 1 Version:     002
+CPLD 2 Version:     003
+Release Version:    HP FF 5930-32QSFP+ Switch-2418P06
+Patch Version  :    None
+Reboot Cause  :     UserReboot
+[SubSlot 0] 32QSFP Plus
+
+Slot 2:
+Uptime is 98 weeks,6 days,6 hours,24 minutes
+FF 5930-32QSFP+ Switch with 2 Processors
+BOARD TYPE:         FF 5930-32QSFP+ Switch
+DRAM:               4096M bytes
+FLASH:              1024M bytes
+PCB 1 Version:      VER.A
+PCB 2 Version:      VER.A
+Bootrom Version:    214
+CPLD 1 Version:     002
+CPLD 2 Version:     003
+Release Version:    HP FF 5930-32QSFP+ Switch-2418P06
+Patch Version  :    None
+Reboot Cause  :     UserReboot
+[SubSlot 0] 32QSFP Plus

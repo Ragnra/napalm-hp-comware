@@ -254,7 +254,6 @@ class HpComwareDriver(NetworkDriver):
             'hostname': u'eos-router',
             'fqdn': u'eos-router',
         """
-        self.disable_pageing()
         facts = self.get_version()
         facts['vendor'] = u'Hewlett-Packard'
         facts['interface_list'] = list(self.get_interfaces().keys())
@@ -601,8 +600,6 @@ class HpComwareDriver(NetworkDriver):
 
         raw_out = self._send_command('display ipv6 interface')
         ifaces_ipv6_entries = textfsm_extractor(self, "display_ipv6_interface", raw_out)
-
-        print(ifaces_ipv6_entries)
 
         return intf_table
 

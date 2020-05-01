@@ -44,6 +44,7 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+report.json
 
 # Translations
 *.mo
@@ -60,3 +61,7 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+
+#ide
+.vscode
