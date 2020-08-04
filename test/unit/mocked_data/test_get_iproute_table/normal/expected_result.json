@@ -1,0 +1,146 @@
+[
+    {
+        "network": "0.0.0.0",
+        "prefix": "",
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.115.1.1",
+        "interface": "Vlan-interface1101"
+    },
+    {
+        "network": "0.0.0.0",
+        "prefix": "",
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "127.0.0.1",
+        "interface": "InLoop0"
+    },
+    {
+        "network": "15.6.9.0",
+        "prefix": 24,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.100.1.11",
+        "interface": "Vlan-interface21"
+    },
+    {
+        "network": "15.6.15.0",
+        "prefix": 24,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.100.1.11",
+        "interface": "Vlan-interface21"
+    },
+    {
+        "network": "15.6.13.0",
+        "prefix": 24,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.100.1.11",
+        "interface": "Vlan-interface21"
+    },
+    {
+        "network": "15.6.13.52",
+        "prefix": 30,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.100.1.10",
+        "interface": "Vlan-interface21"
+    },
+    {
+        "network": "15.24.1.0",
+        "prefix": 29,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "15.24.1.6",
+        "interface": "Vlan-interface7"
+    },
+    {
+        "network": "15.24.1.0",
+        "prefix": 32,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "15.24.1.6",
+        "interface": "Vlan-interface7"
+    },
+    {
+        "network": "15.24.1.6",
+        "prefix": 32,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "127.0.0.1",
+        "interface": "InLoop0"
+    },
+    {
+        "network": "15.24.1.7",
+        "prefix": 32,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "15.24.1.6",
+        "interface": "Vlan-interface7"
+    },
+    {
+        "network": "15.24.32.0",
+        "prefix": 24,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "15.100.1.10",
+        "interface": "Vlan-interface21"
+    },
+    {
+        "network": "15.24.36.0",
+        "prefix": 24,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "155.187.160.4",
+        "interface": "Vlan-interface160"
+    },
+    {
+        "network": "15.25.1.0",
+        "prefix": 24,
+        "protocol": "OSPF",
+        "preference": "150",
+        "cost": "1",
+        "nexthop": "15.100.2.2",
+        "interface": "Vlan-interface1102"
+    },
+    {
+        "network": "15.26.0.0",
+        "prefix": 16,
+        "protocol": "Static",
+        "preference": "60",
+        "cost": "0",
+        "nexthop": "0.0.0.0",
+        "interface": "NULL0"
+    },
+    {
+        "network": "15.26.254.0",
+        "prefix": 28,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "15.26.254.2",
+        "interface": "Vlan-interface300"
+    },
+    {
+        "network": "15.26.254.0",
+        "prefix": 32,
+        "protocol": "Direct",
+        "preference": "0",
+        "cost": "0",
+        "nexthop": "15.26.254.2",
+        "interface": "Vlan-interface300"
+    }
+]

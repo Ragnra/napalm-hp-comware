@@ -7,7 +7,7 @@ Loop1                UP   UP(s)    10.2.99.252
 M-GE0/0/0            UP   UP       10.99.0.10      SITE02-SM01-Z08-E5
 NULL0                UP   UP(s)    --
 REG0                 UP   --       --
-RAGG201              DOWN DOWN     10.2.6.1      DOE-51A-SD01
+RAGG201              DOWN DOWN     10.2.6.1     
 XGE1/0/17:1          UP   UP       10.2.7.1      RS5
 XGE1/0/23:1          DOWN DOWN     --              RS4
 XGE1/0/25:1          ADM  DOWN     --

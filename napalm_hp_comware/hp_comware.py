@@ -167,7 +167,7 @@ class HpComwareDriver(NetworkDriver):
 
     def get_current_privilege(self):
         """ Get and set as property current privilege of the user """
-        raw_out = self._send_command('display users', delay_factor=2)
+        raw_out = self._send_command('display users')
         disp_usr_entries = textfsm_extractor(self, "display_users", raw_out)
         self.current_user_level = disp_usr_entries[0]['user_level']
         return self.current_user_level
@@ -257,7 +257,7 @@ class HpComwareDriver(NetworkDriver):
         facts = self.get_version()
         facts['vendor'] = u'Hewlett-Packard'
         facts['interface_list'] = list(self.get_interfaces().keys())
-        self.privilege_escalation(os_version=facts['os_version'])
+        #self.privilege_escalation(os_version=facts['os_version'])
 
         # get hardware and serial number
         out_display_device = self._send_command("display device manuinfo")
@@ -604,6 +604,51 @@ class HpComwareDriver(NetworkDriver):
         return intf_table
 
                     
+    def get_iproute_table(self):
+        """
+            Returns a list of route entries that contains the following data:
+                * Route Network
+                * Prefix
+                * Learned Protocol
+                * Preference/Administrative Distance
+                * Route Cost
+                * Netxt Hop
+                * Out going interface
+
+            Example:
+                [
+                    {
+                        "network":"15.6.9.0",
+                        "prefix": 24,
+                        "protocol": "static",
+                        'preference": 60,
+                        "cost": 0,
+                        "nexthop": "15.100.1.11",
+                        "interface": "Vlan1101"
+                    }
+                ]
+
+        """
+        raw_out_brief = self._send_command('display ip routing-table')
+        iproutes = textfsm_extractor(self, "display_ip_routing_table", raw_out_brief)
+
+        routes = []
+
+        for route in iproutes:
+            entry = {}
+            for k,v in route.items():
+                
+                if k == "interface":
+                    v = self.normalize_port_name(v)
+                elif k == "prefix" and v != '':
+                    print(v); logger.info(v)
+                    v = int(v)
+
+                entry[k] = v
+
+            routes.append(entry)
+
+        return routes
 
 
     def get_lldp_neighbors(self):
@@ -862,6 +907,7 @@ class HpComwareDriver(NetworkDriver):
             elif 'minute' in timer[1]:
                 uptime += int(timer[0]) * self._MINUTE_SECONDS
         version_entries['uptime'] = uptime
+        version_entries.pop('os_version_release',None)
         return version_entries
 
 

@@ -27,15 +27,16 @@
 #  Netmask request:                 0
 #  Netmask reply:                   0
 #  Unknown type:                    0
-Value INTERFACE (\S+)
-Value INTERFACE_STATE (\S+)
-Value INTERFACE_PROTOCOL_STATE (UP|DOWN|UP\(s\)|DOWN\(s\))
-Value IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
-Value PREFIX_LENGTH (\d{1,2})
+Value Interface (\S+)
+Value Admin (\S+)
+Value Oper (UP|DOWN|UP\(s\)|DOWN\(s\))
+Value List Addresses (\d+\.\d+\.\d+\.\d+)
+Value List Prefixes (\d{1,2})
 
 Start
-  ^${INTERFACE} current state: ${INTERFACE_STATE}
-  ^Line protocol current state: ${INTERFACE_PROTOCOL_STATE}
-  ^Internet Address is ${IP_ADDRESS}/${PREFIX_LENGTH} -> Record
+  ^${Interface} current state: ${Admin}
+  ^Line protocol current state: ${Oper}
+  ^Internet Address is ${Addresses}/${Prefixes}
+  ^Broadcast -> Record
 
 EOF

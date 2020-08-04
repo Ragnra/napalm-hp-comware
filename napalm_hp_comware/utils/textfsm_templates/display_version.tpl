@@ -20,11 +20,17 @@
 Value OS_VERSION (\S+)
 Value OS_VERSION_RELEASE (\S+)
 Value VENDOR (HP|hp)
-Value MODEL (\S+)
+Value MODEL (.*)
 Value UPTIME (.*$)
 
 Start
-  ^Comware\s+Software,\s+Version\s+${OS_VERSION},\s+Release\s+${OS_VERSION_RELEASE}
+  ^Comware\s+Software,\s+Version\s+${OS_VERSION},\s+Release\s+${OS_VERSION_RELEASE} -> Comware5
+  ^HP Comware\s+Software,\s+Version\s+${OS_VERSION},\s+Release\s+${OS_VERSION_RELEASE} -> Comware7
+
+Comware5
   ^${VENDOR}\s+${MODEL}\s+Switch\s+\S+\s+\S+\s+\S+\s+\S+\s+uptime\s+is\s+${UPTIME} -> Record
+
+Comware7
+  ^${VENDOR}\s+${MODEL}\s+Switch\s+uptime\s+is\s+${UPTIME} -> Record
 
 EOF

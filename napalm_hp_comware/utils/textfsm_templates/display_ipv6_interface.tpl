@@ -27,19 +27,20 @@ Value Oper (UP|DOWN|UP\(s\)|DOWN\(s\))
 Value LinkLocal (\S+)
 Value List Addresses (\S+)
 Value List Subnets (\S+)
+Value List Prefixes (\S+)
 Value List GroupAddresses (\S+)
 
 Start
   ^${Interface} current state :${Admin}
   ^Line protocol current state :${Oper}
   ^IPv6 is enabled, link-local address is ${LinkLocal}
-  ^  Global unicast address(es): -> Unicast
-  ^\s+Joined group address(es): -> Multicast
-  ^\s+MTU -> Record
+  ^  Global unicast address -> Unicast
+  ^  Joined group address -> Multicast
+  ^  MTU -> Record
 
 Unicast
-  ^    ${Addresses}, subnet is ${Subnets}
-  ^  Joined group address(es): -> Multicast
+  ^    ${Addresses}, subnet is ${Subnets}/${Prefixes}
+  ^  Joined group address -> Multicast
   ^  \S -> Start
 
 Multicast
